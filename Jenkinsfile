@@ -45,12 +45,13 @@ pipeline {
         }
         stage('Deploy'){
 
-            steps {
-                container('kubectl') {
-                    kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "mykubeconfig")
-                    // sh 'kubectl apply -f deployment.yml'
-                    //  sh 'kubectl rollout restart deployment nginx'
+        steps {
+                withKubeConfig([credentialsId: 'demokubeconfig', serverUrl: 'https://2EB30681541BE823D9A959E85C8382EB.gr7.us-west-2.eks.amazonaws.com']) {
+                sh 'kubectl apply -f deployment.yml'
                 }
+                // kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "")
+                // sh 'kubectl apply -f deployment.yml'
+                //  sh 'kubectl rollout restart deployment nginx'
             }
         }
         
