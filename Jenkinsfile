@@ -35,7 +35,7 @@ pipeline {
             steps {
                 container('docker') {
                     script{
-                        docker.withRegistry('https://public.ecr.aws/l6v9t3l4/demo-jenkins-k8-deployment', 'aws-credentials-reg') {
+                        docker.withRegistry('https://public.ecr.aws/l6v9t3l4/demo-jenkins-k8-deployment', 'ecr:us-east-1:aws-credentials-reg') {
                         app.push("${env.BUILD_NUMBER}")
                         app.push("latest")
                         }
