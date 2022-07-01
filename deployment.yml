@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: public.ecr.aws/l6v9t3l4/demo-jenkins-k8-deployment:latest
+        image: 438748127802.dkr.ecr.us-west-2.amazonaws.com/demo-nginx:latest
         ports:
         - containerPort: 80
