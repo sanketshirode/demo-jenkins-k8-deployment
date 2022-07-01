@@ -45,7 +45,8 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-                 kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "demokubeconfig")
+                //kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "mykubeconfig")
+                 sh 'kubectl apply -f deployment.yml'
                 //  sh 'kubectl rollout restart deployment nginx'
             }
         }
