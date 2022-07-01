@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'default'
+        label 'myjenkins-jenkins-agent'
     }
     // {
     //     kubernetes {
