@@ -47,8 +47,8 @@ pipeline {
 
             steps {
                 container('kubectl') {
-                    //kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "mykubeconfig")
-                    sh 'kubectl apply -f deployment.yml'
+                    kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "mykubeconfig")
+                    // sh 'kubectl apply -f deployment.yml'
                     //  sh 'kubectl rollout restart deployment nginx'
                 }
             }
