@@ -4,7 +4,7 @@ pipeline {
             defaultContainer 'jnlp'
             yamlFile 'agentpod.yaml'
         }
-    }
+    }   
     options {
         skipStagesAfterUnstable()
     }
@@ -19,8 +19,10 @@ pipeline {
         
         stage('Build') { 
             steps { 
-                script{
-                 app = docker.build("nginx")
+                container('docker') {
+                    script{
+                    app = docker.build("nginx")
+                    }
                 }
             }
         }
@@ -31,10 +33,12 @@ pipeline {
         }
         stage('Push') {
             steps {
-                script{
-                     docker.withRegistry('public.ecr.aws/l6v9t3l4/demo-jenkins-k8-deployment', 'ecr:us-west-2:aws-credentials') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
+                container('docker') {
+                    script{
+                        docker.withRegistry('public.ecr.aws/l6v9t3l4/demo-jenkins-k8-deployment', 'ecr:us-west-2:aws-credentials') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                        }
                     }
                 }
             }
