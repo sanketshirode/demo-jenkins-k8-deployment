@@ -1,5 +1,7 @@
 pipeline {
-    agent default
+    agent {
+        label 'default'
+    }
     // {
     //     kubernetes {
     //         defaultContainer 'jnlp'
